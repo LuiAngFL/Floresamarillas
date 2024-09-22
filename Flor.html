@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Girasol Progresivo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            margin: 0;
+        }
+        canvas {
+            border: 2px solid #000;
+            background-color: #000;
+        }
+        button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 100; /* Asegura que el botón quede encima del canvas */
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="1000" height="1000"></canvas>
+
+    <!-- Botón para activar la música y el JS -->
+    <button id="iniciarBtn" onclick="iniciar()">Iniciar</button>
+
+    <!-- Añadir la canción aquí -->
+    <audio id="musicaFondo">
+        <source src="amarillas.mp3" type="audio/mpeg">
+        Tu navegador no soporta la etiqueta de audio.
+    </audio>
+
+    <script>
+        // Función para reproducir la música y empezar el JS
+        function iniciar() {
+            const audio = document.getElementById('musicaFondo');
+            audio.play(); // Reproducir música
+            
+            // Elimina el botón después de hacer clic
+            const boton = document.getElementById('iniciarBtn');
+            boton.style.display = 'none'; 
+
+            // Iniciar la animación del girasol
+            iniciarGirasoles(); 
+        }
+
+        // Función para iniciar la animación del girasol
+        function iniciarGirasoles() {
+            const script = document.createElement('script');
+            script.src = 'girasoles.js'; // Cargar el archivo girasoles.js
+            document.body.appendChild(script); // Añadir el script dinámicamente
+        }
+    </script>
+</body>
+</html>
